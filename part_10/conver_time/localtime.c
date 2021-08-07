@@ -3,6 +3,7 @@
  * localtime() is almost the same but localtime() takes into account the local time
  */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -16,6 +17,11 @@ int main(void)
 
     /* Convert the system time to UTC */
     gtime = localtime(&now);
+    if(gtime == NULL)
+    {
+        fprintf(stderr, "localtime() ERROR");
+        exit(EXIT_FAILURE);
+    }
 
     printf("UTC0: %2d:%02d \n", gtime->tm_hour, gtime->tm_min);
 
